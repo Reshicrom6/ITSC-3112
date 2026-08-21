@@ -4,6 +4,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        Accumulator accumulator = new Accumulator(10);
+        
+        Console.WriteLine(accumulator.Total);
+        
+        accumulator.Add(5);
+        Console.WriteLine(accumulator.Total);
     }
 }
