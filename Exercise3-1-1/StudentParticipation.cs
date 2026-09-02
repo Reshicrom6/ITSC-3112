@@ -12,19 +12,19 @@ public class StudentParticipation
         switch (actionChoice)
         {
             case 1:
-                actionName = "Attended Class";
+                actionName = "Attended Class.";
                 maximumPoints = 1;
                 break;
             case 2:
-                actionName = "Attended office hours";
-                maximumPoints = 2;
+                actionName = "Attended Office Hours.";
+                maximumPoints = 5;
                 break;
             case 3:
-                actionName = "Answered Questions in Class";
+                actionName = "Answered Questions in Class.";
                 maximumPoints = 3;
                 break;
             case 4:
-                actionName = "Contributed to Canvas Discussion";
+                actionName = "Contributed to Canvas Discussion.";
                 maximumPoints = 2;
                 break;
             default:

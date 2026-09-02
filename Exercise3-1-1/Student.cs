@@ -21,7 +21,7 @@ public class Student
         if (!studentId.StartsWith("800"))
             throw new ArgumentException("Student id must start with '800'");
         
-        if (Int64.TryParse(studentId, out long id))
+        if (!Int64.TryParse(studentId, out long id))
             throw new ArgumentException("All characters in student id must be numbers");
         
         if (!email.EndsWith("@charlotte.edu"))
