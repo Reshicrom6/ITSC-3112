@@ -1,12 +1,12 @@
-﻿namespace Assignment2_2_1;
+﻿namespace Exercise2_2_1;
 
 public class Category
 {
     public string Name { get; set; }
     public string Description { get; private set; }
     public int StandardLoanPeriod { get; private set; }
-
-    public EquipmentCatalogue Catalog { get; private set; }
+    
+    public EquipmentCatalog Catalog { get; set; }
 
     public Category()
     {
