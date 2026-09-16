@@ -39,34 +39,5 @@ public class CampusSpace
         IsReserved = false;
     }
 
-    public void Reserve()
-    {
-        if (IsReserved)
-        {
-            throw new InvalidOperationException(
-                "A reserved space cannot be reserved again.");
-        }
-
-        IsReserved = true;
-    }
-
-    public void Release()
-    {
-        if (!IsReserved)
-        {
-            throw new InvalidOperationException(
-                "An unreserved space cannot be released.");
-        }
-
-        IsReserved = false;
-    }
-
-    /// <summary>
-    /// Returns the maximum number of hours this space may be reserved.
-    /// A valid result is always at least one hour.
-    /// </summary>
-    public virtual int GetMaximumReservationHours()
-    {
-        return 3;
-    }
+    
 }

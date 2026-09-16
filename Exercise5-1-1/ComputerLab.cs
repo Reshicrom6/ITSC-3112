@@ -1,6 +1,6 @@
 namespace Exercise5_1_1;
 
-public class ComputerLab : CampusSpace
+public class ComputerLab : ReservableSpace
 {
     public int ComputerCount { get; }
 
@@ -8,8 +8,9 @@ public class ComputerLab : CampusSpace
         string spaceCode,
         string name,
         int capacity,
-        int computerCount)
-        : base(spaceCode, name, capacity)
+        int computerCount,
+        IReservationPolicy reservationPolicy)
+        : base(spaceCode, name, capacity, reservationPolicy)
     {
         if (computerCount <= 0 || computerCount > Capacity)
         {
@@ -20,9 +21,5 @@ public class ComputerLab : CampusSpace
 
         ComputerCount = computerCount;
     }
-
-    public override int GetMaximumReservationHours()
-    {
-        return 4;
-    }
+    
 }

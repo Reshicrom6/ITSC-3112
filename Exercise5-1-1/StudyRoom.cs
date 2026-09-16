@@ -1,6 +1,6 @@
 namespace Exercise5_1_1;
 
-public class StudyRoom : CampusSpace
+public class StudyRoom : ReservableSpace
 {
     public bool HasWhiteboard { get; }
 
@@ -8,14 +8,10 @@ public class StudyRoom : CampusSpace
         string spaceCode,
         string name,
         int capacity,
-        bool hasWhiteboard)
-        : base(spaceCode, name, capacity)
+        bool hasWhiteboard,
+        IReservationPolicy reservationPolicy)
+        : base(spaceCode, name, capacity, reservationPolicy)
     {
         HasWhiteboard = hasWhiteboard;
-    }
-
-    public override int GetMaximumReservationHours()
-    {
-        return 2;
     }
 }

@@ -20,9 +20,4 @@ public class DisplayGallery : CampusSpace
 
         ExhibitName = exhibitName;
     }
-
-    public override int GetMaximumReservationHours()
-    {
-        return 0;
-    }
 }
