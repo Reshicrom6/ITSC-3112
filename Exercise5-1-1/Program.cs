@@ -19,23 +19,26 @@ public static class Program
             new ComputerLab("LAB-310", "Advanced Computing Lab", 30, 24,
                 new FixedReservationPolicy(4))
         ];
-
+        Console.WriteLine("Starter campus-space hierarchy");
+        Console.WriteLine("------------------------------");
         foreach (ReservableSpace space in spaces)
         {
             int hours = space.GetMaximumReservationHours();
+            bool wasReservedBeforeReserve = space.IsReserved;
             space.Reserve();
+            bool isReservedAfterReserve = space.IsReserved;
+
+            space.Release();
+            bool isReservedAfterRelease = space.IsReserved;
 
             Console.WriteLine(
                 $"{space.SpaceCode}: maximum hours = {hours}, " +
-                $"reserved after Reserve() = {space.IsReserved}");
-
-            space.Release();
-            Console.WriteLine(
-                $"{space.SpaceCode}: reserved after Release() = {space.IsReserved}");
+                $"reserved before Reserve() = {wasReservedBeforeReserve}, " +
+                $"reserved after Reserve() = {isReservedAfterReserve}, " +
+                $"reserved after Release() = {isReservedAfterRelease}");
         }
         
-        Console.WriteLine("Starter campus-space hierarchy");
-        Console.WriteLine("------------------------------");
+        
         Console.WriteLine($"{campusSpace.SpaceCode}: {campusSpace.Name}");
     }
 }
