@@ -1,4 +1,4 @@
-﻿namespace Assignment2_2_1;
+﻿namespace Exercise2_2_1;
 
 public class EquipmentCatalogue
 {
