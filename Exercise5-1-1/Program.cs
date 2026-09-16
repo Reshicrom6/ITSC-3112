@@ -33,9 +33,6 @@ public static class Program
             Console.WriteLine(
                 $"{space.SpaceCode}: reserved after Release() = {space.IsReserved}");
         }
-        
-        Console.WriteLine("Starter campus-space hierarchy");
-        Console.WriteLine("------------------------------");
         Console.WriteLine($"{campusSpace.SpaceCode}: {campusSpace.Name}");
     }
 }
