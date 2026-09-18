@@ -33,7 +33,7 @@ public class Student : Person
     /// <returns>The student's name, email, and active status.</returns>
     public override string ToString()
     {
-        return $"{Name} ({Email}) - Active: {IsActive}";
+        return $"{Name}: {GetRoleDescription()}. IsActive: {IsActive}";
     }
 
     public override string GetRoleDescription()

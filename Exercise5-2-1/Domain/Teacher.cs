@@ -33,4 +33,9 @@ public class Teacher : Person, IParticipationAdministrator
         ArgumentNullException.ThrowIfNull(record);
         record.UpdateNotes(notes);
     }
+
+    public override string ToString()
+    {
+        return $"{Name}: {GetRoleDescription()} in {Department}";
+    }
 }
