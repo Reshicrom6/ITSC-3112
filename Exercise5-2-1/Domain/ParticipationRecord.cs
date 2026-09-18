@@ -1,4 +1,4 @@
-namespace Assignment5_2_1.Domain;
+namespace Exercise5_2_1.Domain;
 
 /// <summary>
 /// Records one student's participation in one category at a particular time.

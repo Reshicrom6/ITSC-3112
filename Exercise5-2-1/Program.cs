@@ -1,6 +1,8 @@
-using Assignment5_2_1.Contracts;
-using Assignment5_2_1.Domain;
-using Assignment5_2_1.Service;
+using Exercise5_2_1.Contracts;
+using Exercise5_2_1.Domain;
+using Exercise5_2_1.Service;
+
+namespace Exercise5_2_1;
 
 class Program
 {

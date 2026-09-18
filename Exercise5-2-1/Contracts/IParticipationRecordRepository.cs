@@ -1,6 +1,6 @@
-using Assignment5_2_1.Domain;
+using Exercise5_2_1.Domain;
 
-namespace Assignment5_2_1.Contracts;
+namespace Exercise5_2_1.Contracts;
 
 /// <summary>
 /// Defines in-memory CRUD operations for participation records.

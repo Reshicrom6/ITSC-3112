@@ -1,7 +1,7 @@
-using Assignment5_2_1.Contracts;
-using Assignment5_2_1.Domain;
+using Exercise5_2_1.Contracts;
+using Exercise5_2_1.Domain;
 
-namespace Assignment5_2_1.Service;
+namespace Exercise5_2_1.Service;
 
 /// <summary>
 /// Stores participation records in memory and calculates totals from managed records.

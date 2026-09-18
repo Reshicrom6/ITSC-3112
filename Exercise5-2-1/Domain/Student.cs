@@ -1,4 +1,4 @@
-namespace Assignment5_2_1.Domain;
+namespace Exercise5_2_1.Domain;
 
 /// <summary>
 /// Represents a student who may receive participation records.
@@ -6,7 +6,7 @@ namespace Assignment5_2_1.Domain;
 /// <remarks>
 /// Class invariants: the identifier is not empty and the name and email are not blank.
 /// </remarks>
-public class Student
+public class Student : Person
 {
     /// <summary>
     /// Initializes a student in a valid state.
@@ -17,44 +17,11 @@ public class Student
     /// <exception cref="ArgumentException">
     /// Thrown when the identifier is empty or a text value is blank.
     /// </exception>
-    public Student(Guid id, string name, string email)
+    public Student(Guid id, string name, string email) : base (id, name, email)
     {
-        if (id == Guid.Empty)
-        {
-            throw new ArgumentException("A student identifier is required.", nameof(id));
-        }
-
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            throw new ArgumentException("A student name is required.", nameof(name));
-        }
-
-        if (string.IsNullOrWhiteSpace(email))
-        {
-            throw new ArgumentException("A student email is required.", nameof(email));
-        }
-
-        Id = id;
-        Name = name;
-        Email = email;
         IsActive = true;
     }
-
-    /// <summary>
-    /// Gets the stable identifier used by repositories.
-    /// </summary>
-    public Guid Id { get; }
-
-    /// <summary>
-    /// Gets or sets the student's display name.
-    /// </summary>
-    public string Name { get; set; }
-
-    /// <summary>
-    /// Gets or sets the student's email address.
-    /// </summary>
-    public string Email { get; set; }
-
+    
     /// <summary>
     /// Gets or sets whether the student may receive new participation records.
     /// </summary>
@@ -67,5 +34,10 @@ public class Student
     public override string ToString()
     {
         return $"{Name} ({Email}) - Active: {IsActive}";
+    }
+
+    public override string GetRoleDescription()
+    {
+        return "Student";
     }
 }

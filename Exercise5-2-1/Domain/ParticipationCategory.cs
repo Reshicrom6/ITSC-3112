@@ -1,4 +1,4 @@
-namespace Assignment5_2_1.Domain;
+namespace Exercise5_2_1.Domain;
 
 /// <summary>
 /// Identifies the supported ways a student may participate.
