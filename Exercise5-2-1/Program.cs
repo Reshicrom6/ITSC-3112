@@ -17,6 +17,8 @@ class Program
 
         Student maya = new(Guid.NewGuid(), "Maya Chen", "maya@example.edu");
         Student jordan = new(Guid.NewGuid(), "Jordan Smith", "jordan@example.edu");
+        Teacher thayer = new(Guid.NewGuid(), "Matt Thayer", "mthayer@example.edu", "Computer Science");
+        
 
         ParticipationCategory askingQuestions = new(
             Guid.NewGuid(),
@@ -41,14 +43,14 @@ class Program
         categoryRepository.Add(askingQuestions);
         categoryRepository.Add(helpingOthers);
 
-        ParticipationRecord firstRecord = new(
+        ParticipationRecord firstRecord = thayer.RecordParticipation(
             Guid.NewGuid(),
             maya,
             askingQuestions,
             DateTime.Now.AddMinutes(-25),
             "Connected the question to class invariants.");
 
-        ParticipationRecord secondRecord = new(
+        ParticipationRecord secondRecord = thayer.RecordParticipation(
             Guid.NewGuid(),
             jordan,
             helpingOthers,
@@ -56,6 +58,10 @@ class Program
 
         recordRepository.Add(firstRecord);
         recordRepository.Add(secondRecord);
+
+        thayer.UpdateParticipationNotes(firstRecord, firstRecord.Notes);
+        thayer.UpdateParticipationNotes(secondRecord, secondRecord.Notes);
+        
         Console.WriteLine($"Created {recordRepository.GetAll().Count} participation records.");
 
         Console.WriteLine("\nREAD ONE");
@@ -88,7 +94,7 @@ class Program
         Console.WriteLine("\nREJECTED DOMAIN OPERATION");
         try
         {
-            _ = new ParticipationRecord(
+            _ = thayer.RecordParticipation(
                 Guid.NewGuid(),
                 maya,
                 askingQuestions,
@@ -127,5 +133,26 @@ class Program
         retrievedStudents.Clear();
         Console.WriteLine($"Repository count after clearing the retrieved list: {studentRepository.GetAll().Count}");
 
+        List<Person> list = [jordan, maya, thayer];
+
+        foreach (Person person in list)
+        {
+            Console.WriteLine($"{person.Name}: {person.GetRoleDescription()}");
+        }
+
+        List<IParticipationAdministrator> administrators = [thayer];
+
+        foreach (IParticipationAdministrator administrator in administrators)
+        {
+            ParticipationRecord createdRecord = administrator.RecordParticipation(
+                Guid.NewGuid(),
+                maya,
+                helpingOthers,
+                DateTime.Now.AddMinutes(-5),
+                "Added through the administrator interface.");
+
+            recordRepository.Add(createdRecord);
+        }
+        
     }
 }
