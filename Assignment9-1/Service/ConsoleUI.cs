@@ -17,7 +17,6 @@ public class ConsoleUI
 
     public void RunLogin()
     {
-        // TODO: Ask for the username and password, then call Authenticate.
         Console.Write("Username: ");
         string username = Console.ReadLine() ?? "";
         
@@ -39,7 +38,7 @@ public class ConsoleUI
 
     private static void DisplayLoginSuccess(SessionTokenDto sessionToken)
     {
-        Console.WriteLine($"Username: {sessionToken.Username}");
+        Console.WriteLine($"\nUsername: {sessionToken.Username}");
         Console.WriteLine($"Display Name: {sessionToken.DisplayName}");
         Console.WriteLine($"Token: {sessionToken.Token}");
     }

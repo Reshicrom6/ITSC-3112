@@ -16,6 +16,5 @@ class Program
          ConsoleUI consoleUi = new(authService);
 
          consoleUi.RunLogin();
-         
     }
 }

@@ -18,7 +18,6 @@ public class AuthService
 
     public SessionTokenDto Authenticate(string username, string password)
     {
-        // TODO: Find the account, check it, and return a session-token DTO.
         var account = _staffRepository.FindByUsername(username);
         
         if (account == null)
@@ -31,7 +30,6 @@ public class AuthService
 
     private static void VerifyCredentialsAndPermissions(StaffAccount account, string password)
     {
-        // TODO: Compare the password and check CanManageParticipation.
         if (account.Password != password)
             throw new InvalidCredentialException();
         
@@ -41,7 +39,7 @@ public class AuthService
 
     private static SessionTokenDto CreateSessionToken(StaffAccount account)
     {
-        // TODO: Return a SessionTokenDto containing a new token, username, and display name.
+        
         return new SessionTokenDto(
             Guid.NewGuid().ToString(),
             account.Username,
