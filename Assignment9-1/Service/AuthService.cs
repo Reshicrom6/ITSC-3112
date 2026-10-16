@@ -1,5 +1,6 @@
 using Assignment9_1.DataTransferObjects;
 using Assignment9_1.Domain;
+using Assignment9_1.Exceptions;
 
 namespace Assignment9_1.Service;
 
@@ -18,18 +19,32 @@ public class AuthService
     public SessionTokenDto Authenticate(string username, string password)
     {
         // TODO: Find the account, check it, and return a session-token DTO.
-        throw new NotImplementedException();
+        var account = _staffRepository.FindByUsername(username);
+        
+        if (account == null)
+            throw new InvalidCredentialException();
+        
+        VerifyCredentialsAndPermissions(account, password);
+        
+        return CreateSessionToken(account);
     }
 
     private static void VerifyCredentialsAndPermissions(StaffAccount account, string password)
     {
         // TODO: Compare the password and check CanManageParticipation.
-        throw new NotImplementedException();
+        if (account.Password != password)
+            throw new InvalidCredentialException();
+        
+        if (!account.CanManageParticipation)
+            throw new InvalidCredentialException();
     }
 
     private static SessionTokenDto CreateSessionToken(StaffAccount account)
     {
         // TODO: Return a SessionTokenDto containing a new token, username, and display name.
-        throw new NotImplementedException();
+        return new SessionTokenDto(
+            Guid.NewGuid().ToString(),
+            account.Username,
+            account.DisplayName);
     }
 }

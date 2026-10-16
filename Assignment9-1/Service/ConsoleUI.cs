@@ -1,4 +1,5 @@
 using Assignment9_1.DataTransferObjects;
+using Assignment9_1.Exceptions;
 
 namespace Assignment9_1.Service;
 
@@ -17,18 +18,34 @@ public class ConsoleUI
     public void RunLogin()
     {
         // TODO: Ask for the username and password, then call Authenticate.
-        throw new NotImplementedException();
+        Console.Write("Username: ");
+        string username = Console.ReadLine() ?? "";
+        
+        Console.Write("Password: ");
+        string password = Console.ReadLine() ?? "";
+
+        try
+        {
+            SessionTokenDto sessionToken =
+                _authService.Authenticate(username, password);
+
+            DisplayLoginSuccess(sessionToken);
+        }
+        catch (InvalidCredentialException)
+        {
+            DisplayLoginFailed();
+        }
     }
 
     private static void DisplayLoginSuccess(SessionTokenDto sessionToken)
     {
-        // TODO: Display the username, display name, and token.
-        throw new NotImplementedException();
+        Console.WriteLine($"Username: {sessionToken.Username}");
+        Console.WriteLine($"Display Name: {sessionToken.DisplayName}");
+        Console.WriteLine($"Token: {sessionToken.Token}");
     }
 
     private static void DisplayLoginFailed()
     {
-        // TODO: Display the generic login-failure message.
-        throw new NotImplementedException();
+        Console.WriteLine("Login Failed. Check the username and password.");
     }
 }

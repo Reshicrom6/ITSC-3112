@@ -10,12 +10,12 @@ class Program
         Console.WriteLine("Assignment 9-1 starter loaded.");
         Console.WriteLine("Complete the login TODOs, then uncomment the code below.");
 
-        /*
-        StaffRepository staffRepository = new();
-        AuthService authService = new(staffRepository);
-        ConsoleUI consoleUi = new(authService);
+         
+         StaffRepository staffRepository = new();
+         AuthService authService = new(staffRepository);
+         ConsoleUI consoleUi = new(authService);
 
-        consoleUi.RunLogin();
-        */
+         consoleUi.RunLogin();
+         
     }
 }
