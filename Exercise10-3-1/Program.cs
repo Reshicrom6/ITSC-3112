@@ -19,7 +19,7 @@ internal class Program
                 }
                 else if (source == "api")
                 {
-                    importer = new CsvEnrollmentImporter();
+                    importer = new CanvasApiEnrollmentImporter();
                 }
                 else
                 {
