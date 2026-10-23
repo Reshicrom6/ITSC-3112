@@ -11,8 +11,22 @@ internal class Program
             string source = (Console.ReadLine() ?? string.Empty)
                 .Trim()
                 .ToLowerInvariant();
-            EnrollmentImporter importer = new EnrollmentImporter();
-            List<Student> students = importer.Import(source);
+            
+            EnrollmentImporter importer;
+                if (source == "csv")
+                {
+                    importer = new CsvEnrollmentImporter();
+                }
+                else if (source == "api")
+                {
+                    importer = new CsvEnrollmentImporter();
+                }
+                else
+                {
+                    throw new ArgumentException("Choose csv or api.");
+                }
+            
+            List<Student> students = importer.Import();
             Console.WriteLine($"Imported {students.Count} students.");
 
             // All four events belong to the first student and the same UTC day.

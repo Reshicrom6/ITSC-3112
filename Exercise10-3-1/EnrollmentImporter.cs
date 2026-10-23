@@ -3,12 +3,11 @@ namespace StudentParticipationAppendix;
 /// <summary>
 /// Imports students by using the source created by EnrollmentSourceFactory.
 /// </summary>
-public class EnrollmentImporter
+public abstract class EnrollmentImporter
 {
-    public List<Student> Import(string sourceName)
+    public List<Student> Import()
     {
-        IEnrollmentSource source =
-            EnrollmentSourceFactory.Create(sourceName);
+        IEnrollmentSource source = CreateEnrollmentSource();
 
         List<Student> students = source.GetStudents();
 
@@ -20,4 +19,6 @@ public class EnrollmentImporter
 
         return students;
     }
+    
+    protected abstract IEnrollmentSource CreateEnrollmentSource();
 }

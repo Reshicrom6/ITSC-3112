@@ -1,7 +1,10 @@
 namespace StudentParticipationAppendix;
 
-// TODO: Make this a concrete creator by inheriting EnrollmentImporter.
-// TODO: Override CreateEnrollmentSource and return CsvEnrollmentSource.
-public class CsvEnrollmentImporter
+
+public class CsvEnrollmentImporter : EnrollmentImporter
 {
+    protected override IEnrollmentSource CreateEnrollmentSource()
+    {
+        return new CsvEnrollmentSource();
+    }
 }
