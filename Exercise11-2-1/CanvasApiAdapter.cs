@@ -1,7 +1,7 @@
 namespace StudentParticipationAppendix;
 
 /// <summary>
-/// TODO: Adapt SimulatedCanvasClient to the IEnrollmentSource Target.
+///reads students from a simulated canvas client and returns provided students as a list
 /// </summary>
 public class CanvasApiAdapter : IEnrollmentSource
 {
