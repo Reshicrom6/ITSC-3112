@@ -14,10 +14,18 @@ public class CanvasApiAdapter : IEnrollmentSource
 
     public List<Student> GetStudents()
     {
-        // TODO: Ask the wrapped client for CanvasStudentResponse objects.
-        // TODO: Convert each response into the application's Student type.
-        // TODO: Return the completed student list.
-        throw new NotImplementedException(
-            "Complete CanvasApiAdapter.GetStudents.");
+        List<CanvasStudentResponse> responses = _client.GetStudents();
+        List<Student> students = new List<Student>();
+
+        foreach (CanvasStudentResponse response in responses)
+        {
+            Student student = new Student(
+                response.Id.ToString(),
+                response.Name);
+            
+            students.Add(student);
+        }
+        
+        return students;
     }
 }
