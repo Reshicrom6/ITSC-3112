@@ -32,8 +32,22 @@ internal class Program
             string rule = (Console.ReadLine() ?? string.Empty)
                 .Trim()
                 .ToLowerInvariant();
-            ParticipationCalculator calculator = new ParticipationCalculator();
-            int creditedPoints = calculator.Calculate(student, records, rule);
+            IParticipationScoringStrategy strategy;
+            if (rule == "all")
+            {
+                strategy = new AllEventsScoringStrategy();
+            }
+            else if (rule == "daily")
+            {
+                strategy = new DailyCategoryScoringStrategy();
+            }
+            else
+            {
+                throw new ArgumentException("Choose all or daily for the scoring rule.", nameof(rule));
+            }
+
+            ParticipationCalculator calculator = new ParticipationCalculator(strategy);
+            int creditedPoints = calculator.Calculate(student, records);
 
             Console.WriteLine($"Recorded events: {records.Count}");
             Console.WriteLine($"Credited points: {creditedPoints}");
@@ -47,3 +61,4 @@ internal class Program
         }
     }
 }
+

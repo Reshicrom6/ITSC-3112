@@ -1,7 +1,15 @@
 namespace StudentParticipationAppendix;
 
-// TODO: Implement IParticipationScoringStrategy.
-// TODO: Move the "all" scoring algorithm from ParticipationCalculator here.
-public class AllEventsScoringStrategy
+public class AllEventsScoringStrategy : IParticipationScoringStrategy
 {
+    public int Calculate(List<ParticipationRecord> records)
+    {
+        int total = 0;
+        foreach (ParticipationRecord record in records)
+        {
+            total = total + record.Points;
+        }
+
+        return total;
+    }
 }
