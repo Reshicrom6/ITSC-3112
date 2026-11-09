@@ -1,6 +1,7 @@
 using Exercise13_1_1.Contracts;
 using Exercise13_1_1.Domain;
 using Exercise13_1_1.Service;
+using Exercise13_1_1.Persistence;
 
 namespace Exercise13_1_1;
 
@@ -8,7 +9,8 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        IStudentRepository repository = new StudentRepository();
+        DbInitializer.InitializeDatabase();
+        IStudentRepository repository = new StudentRepositoryPersisted();
 
         Console.WriteLine("STUDENT STORAGE - SQLITE STARTER");
         Console.WriteLine("Commands: add, list, quit");
