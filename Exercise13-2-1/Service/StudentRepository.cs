@@ -16,7 +16,13 @@ public class StudentRepository : IStudentRepository
         }
 
         _students.Add(student);
+        Logger.GetInstance().Info("Student added to memory storage.");
     }
 
-    public List<Student> GetAll() => new List<Student>(_students);
+    public List<Student> GetAll()
+    {
+        List<Student> students = new List<Student>(_students);
+        Logger.GetInstance().Info($"Retrieved {students.Count} students from memory storage.");
+        return students;
+    }
 }

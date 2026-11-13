@@ -33,6 +33,7 @@ public class StudentRepositoryPersisted : IStudentRepository
         command.Parameters.AddWithValue("$email", (object?)student.Email ?? DBNull.Value);
         command.Parameters.AddWithValue("$isActive", student.IsActive ? 1 : 0);
         command.ExecuteNonQuery();
+        Logger.GetInstance().Info("Student saved to SQLite storage.");
     }
 
     public List<Student> GetAll()
@@ -63,6 +64,7 @@ public class StudentRepositoryPersisted : IStudentRepository
                 isActive: reader.GetInt64(9) != 0));
         }
 
+        Logger.GetInstance().Info($"Retrieved {students.Count} students from SQLite storage.");
         return students;
     }
 }

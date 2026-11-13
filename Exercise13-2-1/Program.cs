@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Microsoft.Data.Sqlite;
 using Exercise13_2_1.Contracts;
 using Exercise13_2_1.Domain;
@@ -10,6 +11,12 @@ internal class Program
 {
     private static void Main()
     {
+        Logger first = Logger.GetInstance();
+        first.Info("Application started.");
+        Logger second = Logger.GetInstance();
+        Console.WriteLine($"Are Logger Instances the same object? " +
+                          $"{ReferenceEquals(first, second)}");
+        
         Console.WriteLine("Choose student storage: memory or sqlite");
         string? storageMode;
         while (true)
@@ -26,9 +33,10 @@ internal class Program
                 break;
             }
 
+            first.Warn("Invalid storage selection.");
             Console.Error.WriteLine("Choose memory or sqlite.");
         }
-
+        
         IStudentRepository repository;
         if (storageMode == "sqlite")
         {
@@ -49,6 +57,7 @@ internal class Program
             string? command = Console.ReadLine()?.Trim().ToLowerInvariant();
             if (command is null or "quit")
             {
+                first.Info("Application stopping.");
                 break;
             }
 
@@ -77,6 +86,7 @@ internal class Program
                         }
                         break;
                     default:
+                        first.Warn("Unknown command.");
                         Console.Error.WriteLine("Choose add, list, or quit.");
                         break;
                 }
@@ -85,6 +95,7 @@ internal class Program
                 exception is ArgumentException or FormatException or
                 InvalidOperationException or SqliteException)
             {
+                first.Error($"{(command == "add" ? "Add" : "List")} failed: {exception.GetType().Name}.");
                 Console.Error.WriteLine($"Operation failed: {exception.Message}");
             }
         }
